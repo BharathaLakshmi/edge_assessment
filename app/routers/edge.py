@@ -6,7 +6,7 @@ from ..database import get_db
 
 router = APIRouter()
 
-@router.post('/', status_code=status.HTTP_201_CREATED, response_model=schemas.SourceResponse)
+@router.post('/', status_code=status.HTTP_201_CREATED)
 def create_post(post: schemas.CreateSourceSchema, db: Session = Depends(get_db)):
     frequency = (post.to_date- post.from_date).total_seconds()/60
     frequency_min = str(int(frequency)) + "M"
@@ -15,7 +15,7 @@ def create_post(post: schemas.CreateSourceSchema, db: Session = Depends(get_db))
     db.add(new_source)
     db.commit()
     db.refresh(new_source)
-    return new_source
+    return {"status":"success"}
 
 
 @router.put('/')
