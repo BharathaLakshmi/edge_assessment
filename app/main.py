@@ -49,6 +49,7 @@ def _get_data_trigger(source_id: int, response: Response):
         "source_tag":post.source_tag, 
         "from_date": final_from_date, 
         "to_date": final_to_date, 
+        "last_update_date": post.last_update_date,
         "frequency": post.frequency}
     return updated_dict
 
